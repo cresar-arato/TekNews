@@ -28,6 +28,7 @@ import id.univmulia.teknews.R;
 public class PostActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLayoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private List<Post> mPost;
@@ -53,12 +54,15 @@ public class PostActivity extends AppCompatActivity {
         /*w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);*/
         /*w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
 
+        //perubahan LinearLayoutManager baru >>> lama
+        mLayoutManager = new LinearLayoutManager(PostActivity.this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        //set layout dan adapter ke recylerview
         mRecyclerView = findViewById(R.id.rv_postingan);
-        mRecyclerView.setHasFixedSize(true);
-
-
-        //set layout ke linear layout
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
 
         mPost=new ArrayList<>();
 
