@@ -42,7 +42,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
 
         holder.TvTitle.setText(mData.get(position).getTitle());
         Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.imgPost);
-        Glide.with(mContext).load(mData.get(position).getUserPhoto()).circleCrop().into(holder.imgPostProfile);
+        String userImg = mData.get(position).getUserPhoto();
+        if(userImg !=null){
+            Glide.with(mContext).load(userImg).circleCrop().into(holder.imgPostProfile);
+        } else
+            Glide.with(mContext).load(R.drawable.ic_kitazawa_hagumi).circleCrop().into(holder.imgPostProfile);
+
     }
 
 

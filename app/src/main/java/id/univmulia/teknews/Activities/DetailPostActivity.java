@@ -50,7 +50,13 @@ public class DetailPostActivity extends AppCompatActivity {
         txtPostTitle.setText(postTitle);
 
         String userpostImage = getIntent().getExtras().getString("userPhoto");
-        Glide.with(this).load(userpostImage).circleCrop().into(imgUserPost);
+        //cek jika user memiliki foto atau tidak !!
+        if (userpostImage !=null){
+            Glide.with(this).load(userpostImage).circleCrop().into(imgUserPost);
+        }
+        else{
+            Glide.with(this).load(R.drawable.ic_kitazawa_hagumi).circleCrop().into(imgUserPost);
+        }
 
         String postUsername = getIntent().getExtras().getString("userName");
         txtPostUserName.setText(postUsername);
