@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +37,7 @@ public class PostActivity extends AppCompatActivity {
     //buat klik kembali
     private static final int TIME_INTERVAL = 1000;
     private long mBackPressed;
+    private LinearLayoutManager mLayoutManager;
 
     //keluat aplikasi
     @Override
@@ -50,15 +52,17 @@ public class PostActivity extends AppCompatActivity {
 
         //set statusbar jadi transparan ke postingan kita
         Window w = getWindow();
-        /*w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);*/
-        /*w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        //perubahan LinearLayoutManager
+        mLayoutManager = new LinearLayoutManager(PostActivity.this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        //set layout dan adapter ke recylerview
         mRecyclerView = findViewById(R.id.rv_postingan);
-        mRecyclerView.setHasFixedSize(true);
-
-
-        //set layout ke linear layout
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
 
         mPost=new ArrayList<>();
 
