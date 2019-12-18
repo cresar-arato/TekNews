@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import id.univmulia.teknews.R;
 
 public class SplashActivity extends AppCompatActivity {
